@@ -1,22 +1,33 @@
 import { Component, Output, EventEmitter } from '@angular/core'; 
+import { CommonModule, UpperCasePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FiltreCoursPipe } from '../../pipes/filtre-cours-pipe';
+import { TriCoursPipe } from '../../pipes/tri-cours-pipe';
+
 export interface Cours {
   titre: string;
   categorie: string;
   duree: string;
   places: number;
 }
-@Component ( {
-  imports: [],
+@Component({
   selector: 'app-liste-cours',
-  styleUrl: './liste-cours.css',
-  templateUrl: './liste-cours.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    FiltreCoursPipe,
+    TriCoursPipe,
+    UpperCasePipe
+  ],
+  templateUrl: './liste-cours.html'
 })
 
 export class ListeCours {
  
     @Output() coursSelectionne = new EventEmitter<Cours>(); 
     coursActif: Cours | null = null; 
-    
+    recherche = '';
+    tri: 'asc' | 'desc' = 'asc';
     cours: Cours[] = [ {
       titre: 'Angular avancé',
       categorie: 'Front-end',

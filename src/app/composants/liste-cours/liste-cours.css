@@ -24,3 +24,30 @@
     border: 2px solid #dd0031; 
   background-color: #fdecef; 
   }
+  .badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.badge--frontend {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge--backend {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.badge--langage {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge--autre {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}

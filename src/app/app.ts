@@ -13,7 +13,6 @@ import { Cours } from './composants/liste-cours/liste-cours';
     ListeCours,
     PiedPage,
     DetailCours,
-    
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
