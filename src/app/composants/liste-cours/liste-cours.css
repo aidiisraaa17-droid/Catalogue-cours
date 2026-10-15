@@ -1,0 +1,26 @@
+.liste-cours {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .carte-cours {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    background-color: #f8f8f8;
+  }
+  
+  .carte-cours h2 {
+    color: #333;
+  }
+  
+  .carte-cours p {
+    margin: 8px 0;
+  }
+  .carte-cours.actif { 
+    border: 2px solid #dd0031; 
+  background-color: #fdecef; 
+  }
