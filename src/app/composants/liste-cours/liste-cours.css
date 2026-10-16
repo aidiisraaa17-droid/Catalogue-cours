@@ -1,53 +1,55 @@
+
 .liste-cours {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .carte-cours {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 250px;
-    background-color: #f8f8f8;
-  }
-  
-  .carte-cours h2 {
-    color: #333;
-  }
-  
-  .carte-cours p {
-    margin: 8px 0;
-  }
-  .carte-cours.actif { 
-    border: 2px solid #dd0031; 
-  background-color: #fdecef; 
-  }
-  .badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.carte-cours {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 220px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.carte-cours h2 {
+  color: #333;
+}
+
+.carte-cours p {
+  margin: 8px 0;
+}
+
+.carte-cours.actif {
+  border: 2px solid #dd0031;
+  background-color: #fdecef;
+}
+
+.badge {
   display: inline-block;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #6b6b7b;
 }
 
 .badge--frontend {
-  background-color: #dbeafe;
-  color: #1d4ed8;
+  background-color: #dd0031;
 }
 
 .badge--backend {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: #1b1b2f;
 }
 
 .badge--langage {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: #0e7c86;
 }
 
 .badge--autre {
-  background-color: #f3e8ff;
-  color: #6b21a8;
+  background-color: #6b6b7b;
 }

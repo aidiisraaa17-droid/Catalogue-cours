@@ -19,3 +19,5 @@ describe('DetailCours', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
