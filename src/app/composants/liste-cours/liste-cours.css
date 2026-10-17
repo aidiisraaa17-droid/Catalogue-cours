@@ -1,9 +1,25 @@
 
+.controles {
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.controles input,
+.controles select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
 .liste-cours {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+  align-items: stretch;
 }
 
 .carte-cours {
@@ -13,10 +29,18 @@
   min-width: 220px;
   background-color: white;
   cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.2s;
 }
 
-.carte-cours h2 {
+.carte-cours:hover {
+  box-shadow: 0 4px 10px #00000015;
+  transform: translateY(-3px);
+}
+
+.carte-cours h3 {
   color: #333;
+  margin-top: 0;
 }
 
 .carte-cours p {
@@ -30,7 +54,7 @@
 
 .badge {
   display: inline-block;
-  padding: 2px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -52,4 +76,9 @@
 
 .badge--autre {
   background-color: #6b6b7b;
+}
+
+.liste-vide {
+  padding: 20px;
+  color: #666;
 }

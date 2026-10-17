@@ -22,7 +22,8 @@ export interface Cours {
     UpperCasePipe,
     TronquerPipe
   ],
-  templateUrl: './liste-cours.html'
+  templateUrl: './liste-cours.html',
+  styleUrl: './liste-cours.css'
 })
 export class ListeCours {
     @Output() coursSelectionne = new EventEmitter<Cours>(); 
