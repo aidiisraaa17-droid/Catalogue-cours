@@ -19,9 +19,11 @@
       [class.actif]="c === coursActif"
       (click)="selectionner(c)"
     >
-      <h2>{{ c.titre }}</h2>
-      <p>Durée : {{ c.duree }}</p>
-      <p>Places disponibles : {{ c.places }}</p>
+     <h3>{{ c.titre | tronquer:20 }}</h3>
+     <p>Durée : {{ c.duree }}</p>
+     <p>{{ c.places | placesRestantes }}</p>
+     
+    
       
 @switch (c.categorie) {
   @case ('Front-end') {

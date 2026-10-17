@@ -3,7 +3,8 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FiltreCoursPipe } from '../../pipes/filtre-cours-pipe';
 import { TriCoursPipe } from '../../pipes/tri-cours-pipe';
-
+import { PlacesRestantesPipe } from '../../pipes/places-restantes-pipe';
+import { TronquerPipe } from '../../pipes/tronquer-pipe';
 export interface Cours {
   titre: string;
   categorie: string;
@@ -17,13 +18,13 @@ export interface Cours {
     FormsModule,
     FiltreCoursPipe,
     TriCoursPipe,
-    UpperCasePipe
+    PlacesRestantesPipe,
+    UpperCasePipe,
+    TronquerPipe
   ],
   templateUrl: './liste-cours.html'
 })
-
 export class ListeCours {
- 
     @Output() coursSelectionne = new EventEmitter<Cours>(); 
     coursActif: Cours | null = null; 
     recherche = '';
