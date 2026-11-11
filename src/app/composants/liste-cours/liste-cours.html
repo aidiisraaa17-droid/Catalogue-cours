@@ -16,13 +16,13 @@
   ) {
     <article
       class="carte-cours"
-      [class.actif]="c === coursActif"
-      (click)="selectionner(c)"
     >
      <h3>{{ c.titre | tronquer:20 }}</h3>
      <p>Durée : {{ c.duree }}</p>
      <p>{{ c.places | placesRestantes }}</p>
-     
+      <a [routerLink]="['/cours', c.id]">
+       Voir le détail
+     </a>
     
       
 @switch (c.categorie) {

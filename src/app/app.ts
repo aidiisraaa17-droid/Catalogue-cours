@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-
+import { Component, inject } from '@angular/core';
 import { EnTete } from './composants/en-tete/en-tete';
 import { ListeCours } from './composants/liste-cours/liste-cours';
 import { PiedPage } from './composants/pied-page/pied-page';
-import { DetailCours } from './composants/detail-cours/detail-cours';
-import { Cours } from './composants/liste-cours/liste-cours';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Session } from './services/session';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,17 +12,19 @@ import { Cours } from './composants/liste-cours/liste-cours';
     EnTete,
     ListeCours,
     PiedPage,
-    DetailCours,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+export class App {
+  session = inject(Session);
+  private router = inject(Router);
 
- 
-export class App { 
-  coursSelectionne: Cours | null = null; 
-  
-  onSelectionCours(c: Cours) { 
-    this.coursSelectionne = c; 
-  } 
+  deconnecter() {
+    this.session.deconnecter();
+    this.router.navigateByUrl('/');
+  }
 } 
