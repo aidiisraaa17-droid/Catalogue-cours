@@ -6,8 +6,20 @@
     <p class="succes">
       {{ confirmation }}
     </p>
+    <a routerLink="/mes-inscriptions">Voir mes inscriptions</a>
   }
+  @else if (inscriptions.estInscrit(cours.id)) {
 
+    <p class="succes">
+      Vous êtes déjà inscrit à ce cours.
+    </p>
+
+    <a routerLink="/mes-inscriptions">
+      Voir mes inscriptions
+    </a>
+
+  } 
+  @else {
   <form
     [formGroup]="form"
     (ngSubmit)="envoyer()"
@@ -208,7 +220,7 @@
     </button>
 
   </form>
-
+  }
 } @else {
 
   <p>

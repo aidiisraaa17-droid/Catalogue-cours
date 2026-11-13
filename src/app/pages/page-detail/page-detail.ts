@@ -13,28 +13,31 @@ import {
 import {
   DetailCours
 } from '../../composants/detail-cours/detail-cours';
-
+import { inject } from '@angular/core';
+import { Catalogue } from '../../services/catalogue';
 @Component({
   selector: 'app-page-detail',
   standalone: true,
   imports: [
     DetailCours,
-    RouterLink
+    RouterLink,
+    
+    
   ],
+  
 
   templateUrl: './page-detail.html',
   styleUrl: './page-detail.css'
 })
 export class PageDetail {
+  private catalogue = inject(Catalogue);
 
   @Input()
   id = '';
 
   get cours(): Cours | undefined {
 
-    return COURS.find(
-      c => c.id === Number(this.id)
-    );
+     return this.catalogue.trouver(Number(this.id));
 
   }
 

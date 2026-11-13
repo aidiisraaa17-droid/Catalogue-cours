@@ -19,6 +19,7 @@
     routerLink="/mes-inscriptions"
     routerLinkActive="actif">
     Mes inscriptions
+    ({{ inscriptions.liste().length }})
   </a>
 
   @if (session.connecte()) {
