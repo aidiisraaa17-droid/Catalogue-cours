@@ -6,7 +6,7 @@ import { Connexion } from './pages/connexion/connexion';
 import { Introuvable } from './pages/introuvable/introuvable';
 import { ListeCours } from './composants/liste-cours/liste-cours';
 import { authGuard } from './guards/auth-guard';
-
+import { Inscription } from './pages/inscription/inscription';
 export const routes: Routes = [
 
   {
@@ -42,6 +42,12 @@ export const routes: Routes = [
   canActivate: [authGuard],
 
   title: 'Mes inscriptions'
+},
+{
+  path: 'cours/:id/inscription',
+  component: Inscription,
+  canActivate: [authGuard],
+  title: 'Inscription'
 },
 
   {
