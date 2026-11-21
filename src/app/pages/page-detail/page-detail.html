@@ -1,15 +1,23 @@
-@if (cours) {
+@if (chargement()) {
 
-  <app-detail-cours
-    [cours]="cours">
-  </app-detail-cours>
-   <a [routerLink]="['/cours', cours.id, 'inscription']">
+  <p class="info">
+    Chargement du cours...
+  </p>
+
+} @else if (cours(); as c) {
+
+  <app-detail-cours [cours]="c"></app-detail-cours>
+
+  <a [routerLink]="['/cours', c.id, 'inscription']">
     S'inscrire à ce cours
   </a>
+
+  <br />
+
 } @else {
 
-  <p>
-    Ce cours n'existe pas.
+  <p class="alerte-erreur">
+    {{ erreur() }}
   </p>
 
 }

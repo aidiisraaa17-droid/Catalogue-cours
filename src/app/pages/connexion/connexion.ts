@@ -1,8 +1,10 @@
 import {
   Component,
   Input,
-  inject
+  inject,
+  signal
 } from '@angular/core';
+import { Inscriptions } from '../../services/inscriptions';
 
 import {
   Router
@@ -28,6 +30,9 @@ import {
   styleUrl: './connexion.css'
 })
 export class Connexion {
+  private inscriptions = inject(Inscriptions);
+
+erreur = signal('');
 
   private session = inject(Session);
 
@@ -40,11 +45,23 @@ export class Connexion {
 
   seConnecter() {
 
-    this.session.connecter(this.nom);
+ this.session.connecter(this.nom);
 
-    this.router.navigateByUrl(
-      this.retour || '/mes-inscriptions'
-    );
+  this.inscriptions.charger().subscribe({
+
+    next: () => {
+      this.router.navigateByUrl(
+        this.retour || '/mes-inscriptions'
+      );
+    },
+
+    error: () => {
+      this.erreur.set(
+        'Connexion établie, mais vos inscriptions sont inaccessibles (API arrêtée ?).'
+      );
+    }
+
+  });
 
   }
 

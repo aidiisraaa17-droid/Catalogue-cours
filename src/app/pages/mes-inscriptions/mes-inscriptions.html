@@ -4,22 +4,53 @@
   Bonjour {{ session.nom() }}
 </p>
 
-@for (i of inscriptions.liste(); track i.coursId) {
+@if (erreur()) {
+
+  <p class="alerte-erreur">
+    {{ erreur() }}
+  </p>
+
+}
+
+@for (i of inscriptions.liste(); track i.id) {
 
   <article class="carte-inscription">
 
     <h2>
-      {{ catalogue.trouver(i.coursId)?.titre }}
+      {{ titre(i.coursId) }}
     </h2>
 
     <p>
-      Niveau : {{ i.niveau }}
-      ·
-      Inscrit le {{ i.date | date:'dd/MM/yyyy' }}
+      Inscrit le
+      {{ i.date | date:'dd/MM/yyyy' }}
     </p>
 
+    <label>
+      Niveau :
+
+      <select
+        #sel
+        (change)="changerNiveau(i.id, sel.value)"
+      >
+
+        @for (n of niveaux; track n.valeur) {
+
+          <option
+            [value]="n.valeur"
+            [selected]="n.valeur === i.niveau"
+          >
+            {{ n.libelle }}
+          </option>
+
+        }
+
+      </select>
+
+    </label>
+
     <button
-      (click)="inscriptions.annuler(i.coursId)">
+      (click)="annuler(i.id)"
+    >
       Annuler l'inscription
     </button>
 
@@ -29,6 +60,7 @@
 
   <p>
     Aucune inscription pour le moment.
+
     <a routerLink="/cours">
       Parcourir le catalogue
     </a>

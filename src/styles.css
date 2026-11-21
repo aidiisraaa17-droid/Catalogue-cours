@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+.info {
+  color: #6b6b7b;
+  font-style: italic;
+}
+
+.alerte-erreur {
+  background: #fdecef;
+  border-left: 4px solid #dd0031;
+  color: #c3002f;
+  padding: 12px 16px;
+  max-width: 520px;
+}

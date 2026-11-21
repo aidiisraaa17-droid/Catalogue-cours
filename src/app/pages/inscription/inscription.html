@@ -1,14 +1,20 @@
-@if (cours) {
+@if (cours(); as c) {
 
-  <h1>Inscription : {{ cours.titre }}</h1>
+  <h1>
+    Inscription : {{ c.titre }}
+  </h1>
 
-  @if (confirmation) {
+  @if (confirmation()) {
+
     <p class="succes">
-      {{ confirmation }}
+      {{ confirmation() }}
     </p>
-    <a routerLink="/mes-inscriptions">Voir mes inscriptions</a>
-  }
-  @else if (inscriptions.estInscrit(cours.id)) {
+
+    <a routerLink="/mes-inscriptions">
+      Voir mes inscriptions
+    </a>
+
+  } @else if (inscriptions.estInscrit(c.id)) {
 
     <p class="succes">
       Vous êtes déjà inscrit à ce cours.
@@ -18,217 +24,46 @@
       Voir mes inscriptions
     </a>
 
-  } 
-  @else {
-  <form
-    [formGroup]="form"
-    (ngSubmit)="envoyer()"
-    novalidate
-  >
+  } @else {
 
-    <!-- NOM -->
-    <div class="champ">
+    @if (erreur()) {
+      <p class="alerte-erreur">
+        {{ erreur() }}
+      </p>
+    }
 
-      <label for="nom">
-        Nom complet
-      </label>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="envoyer()"
+      novalidate
+    >
 
-      <input
-        id="nom"
-        formControlName="nom"
+      <!-- Les champs du TP5 restent ici -->
+
+      <button
+        type="submit"
+        [disabled]="envoiEnCours()"
       >
-
-      @if (nom.invalid && nom.touched) {
-
-        <p class="erreur">
-
-          @if (nom.errors?.['required']) {
-            Le nom est obligatoire.
-          }
-
-          @else if (nom.errors?.['nomComplet']) {
-            Indiquez votre prénom et votre nom.
-          }
-
-        </p>
-      }
-
-    </div>
-
-
-    <!-- EMAIL -->
-    <div class="champ">
-
-      <label for="email">
-        Adresse e-mail
-      </label>
-
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-      >
-
-      @if (email.invalid && email.touched) {
-
-        <p class="erreur">
-
-          @if (email.errors?.['required']) {
-            L'adresse e-mail est obligatoire.
-          }
-
-          @else if (email.errors?.['email']) {
-            Format d'adresse invalide.
-          }
-
-        </p>
-      }
-
-    </div>
-
-
-    <!-- TELEPHONE -->
-    <div class="champ">
-
-      <label for="telephone">
-        Téléphone (facultatif)
-      </label>
-
-      <input
-        id="telephone"
-        formControlName="telephone"
-      >
-
-      @if (telephone.invalid && telephone.touched) {
-
-        <p class="erreur">
-          Le numéro doit contenir exactement 8 chiffres.
-        </p>
-
-      }
-
-    </div>
-
-
-    <!-- NIVEAU -->
-    <div class="champ">
-
-      <label for="niveau">
-        Votre niveau
-      </label>
-
-      <select
-        id="niveau"
-        formControlName="niveau"
-      >
-
-        <option value="">
-          -- Choisir --
-        </option>
-
-        <option value="debutant">
-          Débutant
-        </option>
-
-        <option value="intermediaire">
-          Intermédiaire
-        </option>
-
-        <option value="avance">
-          Avancé
-        </option>
-
-      </select>
-
-      @if (niveau.invalid && niveau.touched) {
-
-        <p class="erreur">
-          Choisissez votre niveau.
-        </p>
-
-      }
-
-    </div>
-
-
-    <!-- MOTIVATION -->
-    <div class="champ">
-
-      <label for="motivation">
-        Pourquoi ce cours ?
-      </label>
-
-      <textarea
-        id="motivation"
-        rows="4"
-        formControlName="motivation"
-      ></textarea>
-
-      @if (motivation.invalid && motivation.touched) {
-
-        <p class="erreur">
-
-          @if (motivation.errors?.['required']) {
-
-            La motivation est obligatoire.
-
-          }
-
-          @else if (motivation.errors?.['minlength']) {
-
-            Au moins 20 caractères
-            (encore
-            {{ 20 - (motivation.value?.length ?? 0) }}).
-
-          }
-
-        </p>
-
-      }
-
-    </div>
-
-
-    <!-- CONDITIONS -->
-    <div class="champ">
-
-      <label>
-
-        <input
-          type="checkbox"
-          formControlName="conditions"
-        >
-
-        J'accepte les conditions d'inscription
-
-      </label>
-
-      @if (conditions.invalid && conditions.touched) {
-
-        <p class="erreur">
-          Vous devez accepter les conditions.
-        </p>
-
-      }
-
-    </div>
-
-
-    <!-- BOUTON -->
-    <button type="submit">
-      Valider mon inscription
-    </button>
-
-  </form>
+        {{
+          envoiEnCours()
+            ? 'Envoi en cours...'
+            : 'Valider mon inscription'
+        }}
+      </button>
+
+    </form>
   }
+
+} @else if (erreur()) {
+
+  <p class="alerte-erreur">
+    {{ erreur() }}
+  </p>
+
 } @else {
 
-  <p>
-    Ce cours n'existe pas.
+  <p class="info">
+    Chargement du cours...
   </p>
 
 }
-
-<a routerLink="/cours">
-  ← Retour au catalogue
-</a>

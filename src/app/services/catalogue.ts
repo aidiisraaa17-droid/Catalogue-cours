@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
-import { COURS, Cours } from '../donnees/cours';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Cours } from '../donnees/cours';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Catalogue {
 
-  lister(): Cours[] {
-    return COURS;
+  private http = inject(HttpClient);
+
+  lister(): Observable<Cours[]> {
+    return this.http.get<Cours[]>('/cours');
   }
 
-  trouver(id: number): Cours | undefined {
-    return COURS.find(c => c.id === id);
+  trouver(id: number): Observable<Cours> {
+    return this.http.get<Cours>(`/cours/${id}`);
   }
 }

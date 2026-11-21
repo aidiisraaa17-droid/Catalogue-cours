@@ -11,3 +11,8 @@
   Se connecter
 
 </button>
+@if (erreur()) {
+  <p class="alerte-erreur">
+    {{ erreur() }}
+  </p>
+}

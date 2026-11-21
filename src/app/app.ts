@@ -24,9 +24,12 @@ export class App {
   session = inject(Session);
   inscriptions = inject(Inscriptions);
   private router = inject(Router);
+  
 
   deconnecter() {
     this.session.deconnecter();
+      this.inscriptions.vider();
+
     this.router.navigateByUrl('/');
   }
 } 
